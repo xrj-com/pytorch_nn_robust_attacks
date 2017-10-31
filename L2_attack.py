@@ -1,10 +1,3 @@
-# l2_attack.py -- attack a network optimizing for l_2 distance
-##
-# Copyright (C) 2016, Nicholas Carlini <nicholas@carlini.com>.
-##
-# This program is licenced under the BSD 2-Clause licence,
-# contained in the LICENCE file in this directory.
-
 import sys
 import torch
 from torch.autograd import Variable
@@ -125,7 +118,7 @@ class CarliniL2:
 
             # the variable we're going to optimize over
 
-            ############### mycode #################
+            ############### pytroch #################
             # these are the variables to initialize when we run
             if self.is_cuda:
                 modifier = Variable(torch.zeros(
@@ -155,7 +148,7 @@ class CarliniL2:
 
             prev = 1e6
             for iteration in range(self.MAX_ITERATIONS):
-                ################## mycode ###################
+                ################## pytorch ###################
                 optimizer.zero_grad()
                 # the resulting image, tanh'd to keep bounded from -0.5 to 0.5
                 self.newimg = torch.tanh(modifier + self.timg) / 2.0
@@ -196,7 +189,7 @@ class CarliniL2:
                 l2s = self.l2dist.cpu().data.numpy()
                 scores = self.output.cpu().data.numpy()
                 nimg = self.newimg.cpu().data.numpy()
-                ################# mycode ##################################
+                ###################################################
 
                 # print out the losses every 10%
                 if iteration % (self.MAX_ITERATIONS // 10) == 0:
